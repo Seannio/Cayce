@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background: repeating-radial-gradient(circle, transparent, transparent 6.3px, #a5a1a1 6.3px, #a5a1a1 8.1px), repeating-radial-gradient(circle, transparent, transparent 6.3px, #a5a1a1 6.3px, #a5a1a1 8.1px), #ede0d4;
+        background-size: 36px 36px;
+        background-position: 0 0, 18px 18px, 36px 18px;
+        background-color: #ede0d4;
+    }
+
+    .head_text {
+        color: white;
+    }
+
+    .card {
+        background-color: #EDE0D4;
+    }
+    
+    .featured-image-list{
+        object-fit: cover;
+    }
+
+    .card-title {
+        font-size: 32px;
+        color: #0e0e0e;
+    }
+
+</style>
+<br>
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-8 mx-auto">
+            {% for post in post_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a href="{% url 'post_detail' post.slug  %}" class="card-title">{{ post.title }}</a>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                    <p class="card-text">{{post.content|safe|slice:":200" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%endblock%}

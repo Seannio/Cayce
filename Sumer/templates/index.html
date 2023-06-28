@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background:
+                radial-gradient(50% 50% at 100% 0,#ede0d4 0%  5% ,#a5a1a1 6%  15%,#ede0d4 16% 25%,#a5a1a1 26% 35%,#ede0d4 36% 45%,
+                #a5a1a1 46% 55%,#ede0d4 56% 65%,#a5a1a1 66% 75%,#ede0d4 76% 85%,#a5a1a1 86% 95%,
+                #0000 96%),
+                radial-gradient(50% 50% at 0 100%,#ede0d4 0%  5% ,#a5a1a1 6%  15%,#ede0d4 16% 25%,#a5a1a1 26% 35%,#ede0d4 36% 45%,
+                #a5a1a1 46% 55%,#ede0d4 56% 65%,#a5a1a1 66% 75%,#ede0d4 76% 85%,#a5a1a1 86% 95%,
+                #0000 96%),
+                radial-gradient(50% 50%,#ede0d4 0%  5% ,#a5a1a1 6%  15%,#ede0d4 16% 25%,#a5a1a1 26% 35%,#ede0d4 36% 45%,
+                #a5a1a1 46% 55%,#ede0d4 56% 65%,#a5a1a1 66% 75%,#ede0d4 76% 85%,#a5a1a1 86% 95%,
+                #0000 96%),
+                radial-gradient(50% 50%,#ede0d4 0%  5% ,#a5a1a1 6%  15%,#ede0d4 16% 25%,#a5a1a1 26% 35%,#ede0d4 36% 45%,
+                #a5a1a1 46% 55%,#ede0d4 56% 65%,#a5a1a1 66% 75%,#ede0d4 76% 85%,#a5a1a1 86% 95%,
+                #0000 96%) 18px 18px;
+        background-size: 36px 36px;
+        background-color: #ede0d4;
+    }
+
+    .head_text {
+        color: white;
+    }
+
+    .card {
+        background-color: #EDE0D4;
+    }
+    
+    .featured-image-list{
+        object-fit: cover;
+    }
+
+    .card-title {
+        font-size: 32px;
+        color: #0e0e0e;
+    }
+
+    .card-text {
+        text-align: center;
+    }
+
+    iframe, object, embed {
+        max-width: 100%;
+    }
+    
+</style>
+<br>
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-8 mx-auto">
+            {% for post in post_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <a href="{% url 'post_detail' post.slug  %}" class="card-title">{{ post.title }}</a>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                    <p class="card-text">{{post.content|safe|slice:":200" }}</p>
+                </div>
+            </div>
+            </iframe>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%endblock%}
